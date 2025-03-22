@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
-import { MessageSquare, User, Mail, Lock, Eye, EyeOff, Loader2, Link} from 'lucide-react';
+import { MessageSquare, User, Mail, Lock, Eye, EyeOff, Loader2} from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
+import { Link } from "react-router-dom";
+import AuthImagePattern from '../components/AuthImagePattern';
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,7 +46,7 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Full Name</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                   <User className="size-5 text-base-content/40" />
                 </div>
                 <input
@@ -62,7 +64,7 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Email</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                   <Mail className="size-5 text-base-content/40" />
                 </div>
                 <input
@@ -80,7 +82,7 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Password</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                   <Lock className="size-5 text-base-content/40" />
                 </div>
                 <input
@@ -127,6 +129,14 @@ const SignUpPage = () => {
           </div>
         </div>
       </div>
+
+      {/* right side */}
+
+      <AuthImagePattern
+        title="Join our community"
+        subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
+      />
+
     </div>
   )
 }
