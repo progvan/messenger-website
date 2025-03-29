@@ -7,7 +7,9 @@ export const useAuthStore = create((set) => ({
     isSiginigUp: false,
     isLoggingIng: false,
     isUpdatingProfile: false,
+
     isCheckingAuth: true,
+    
     checkAuth: async() => {
         try {
             const res = await axiosInstance.get("/auth/check")
@@ -54,6 +56,24 @@ export const useAuthStore = create((set) => ({
             toast.success("Logged out successfully");
         } catch (error) {
             toast.error(error.response.data.message);
+        }
+    },
+
+    updateProfile: async (data) => {
+        set({ isUpdatingProfile: true });
+        try {
+            const res = await axiosInstance.put("/auth/update-profile", data);
+            set({ authUser: res.data });
+            toast.success("Profile updated successfully");
+        } catch (error) {
+            console.log("error in update profile: ", error);
+            if (error.response?.status === 413) {
+                toast.error("Image is too large. Maximum size is 10MB.");
+            } else {
+                toast.error(error.response?.data?.message || "An error occurred");
+            }
+        } finally {
+            set({ isUpdatingProfile: false });
         }
     },
 }))
