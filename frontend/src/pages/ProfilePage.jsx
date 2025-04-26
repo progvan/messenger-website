@@ -10,9 +10,9 @@ const ProfilePage = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if(!file) return;
-    const maxSize = 10 * 1024 * 1024; 
+    const maxSize = 50 * 1024; 
     if (file.size > maxSize) {
-      toast.error("Image is too large. Maximum size is 10MB.");
+      toast.error("Image size must be less than 50 KB");
       return;
     }
   
